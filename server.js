@@ -1,9 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+
+dotenv.config();
 const app = express();
 
+//Database
 mongoose
-  .connect(``)
+  .connect(process.env.DATABASE)
   .then(() => console.log(`database connected`))
   .catch(err => console.log(`err:  ${err}`));
 

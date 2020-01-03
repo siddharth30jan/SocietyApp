@@ -28,7 +28,7 @@ route.post("/", async (req, res) => {
 //Get a specific society
 route.get("/:name", async (req, res) => {
   try {
-    let society = societies.findOne({ name: req.body.name });
+    let society = societies.findOne({ name: req.params.name });
     res.status(200).json({ msg: "success", data: society });
   } catch (error) {
     res.status(400).json({ msg: "error", err: error });
