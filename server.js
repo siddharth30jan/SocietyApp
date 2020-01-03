@@ -5,13 +5,15 @@ const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 //Database
 mongoose
   .connect(process.env.DATABASE)
   .then(() => console.log(`database connected`))
   .catch(err => console.log(`err:  ${err}`));
 
-app.get("/", require("./routes"));
+app.use("/api", require("./routes"));
 
 const PORT = process.env.PORT || 5000;
 

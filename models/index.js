@@ -1,4 +1,4 @@
-const students = require("./students");
-const societies = require("./societies");
+const Students = require("./students");
+const Societies = require("./societies");
 
-module.exports = { students, societies };
+module.exports = { Students, Societies };

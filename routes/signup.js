@@ -1,7 +1,7 @@
 const route = require("express").Router();
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtokens");
-const students = require("../models");
+const jwt = require("jsonwebtoken");
+const { Students } = require("../models");
 
 route.post("/", async (req, res) => {
   const { email, password, name } = req.body;
@@ -9,10 +9,10 @@ route.post("/", async (req, res) => {
   if (!email) return res.status(400).json({ err: "Enter Email!" });
   if (!password) return res.status(400).json({ err: "Enter Password!" });
 
-  let salt =await  bcrypt.genSaltSync(10);
-  let hash =await bcrypt.hashSync(password, salt);
+  let salt = await bcrypt.genSaltSync(10);
+  let hash = await bcrypt.hashSync(password, salt);
   try {
-    let newStud = await new students({
+    let newStud = await new Students({
       name,
       email,
       password: hash

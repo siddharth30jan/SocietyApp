@@ -1,11 +1,11 @@
 const route = require("express").Router();
-const societies = require("../models");
+const { Societies } = require("../models");
 
 //Get all  societies
 route.get("/", async (req, res) => {
   try {
-    let societies = await societies.find({});
-    res.status(200).json({ msg: "success", data: societies });
+    let Societies = await Societies.find({});
+    res.status(200).json({ msg: "success", data: Societies });
   } catch (error) {
     res.status(400).json({ msg: "error", err: error });
   }
@@ -14,7 +14,7 @@ route.get("/", async (req, res) => {
 //Add a society [ONLY FOR MAIN ADMIN]
 route.post("/", async (req, res) => {
   try {
-    let newSociety = new societies({
+    let newSociety = new Societies({
       name: req.body.name,
       email: req.body.email,
       password: req.body.password

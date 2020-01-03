@@ -1,17 +1,15 @@
 const route = require("express").Router();
-const students = require("../models");
+const { Students } = require("../models");
+const auth = require("./auth");
 
 //Get all students
-route.get("/", async (req, res) => {
+route.get("/", auth, async (req, res) => {
   try {
-    let students = await students.find({});
+    let students = await Students.find({});
     res.status(200).json({ msg: "success", data: students });
   } catch (error) {
     res.status(400).json({ msg: "error", err: error });
   }
 });
-
-
-//Add s 
 
 module.exports = route;
