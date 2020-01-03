@@ -1,5 +1,5 @@
 const route = require("express").Router();
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtokens");
 const students = require("../models");
 
@@ -15,7 +15,7 @@ route.post("/", async (req, res) => {
   if (!result) return res.status(400).json({ err: "Password doesnot match!" });
 
   //All constraints cleared,get the token and send it
-  const token = await jwt.sign({ stud }, process.env.JWT);
+  const token = await jwt.sign({ id: stud.id }, process.env.JWT);
   res.json({ msg: "success", token });
 });
 
