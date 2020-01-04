@@ -11,5 +11,6 @@ route.get("/", auth, async (req, res) => {
     res.status(400).json({ msg: "error", err: error });
   }
 });
+//Subscribing route- get all subscribed societies
 
 module.exports = route;

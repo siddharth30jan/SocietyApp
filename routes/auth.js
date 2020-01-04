@@ -9,6 +9,6 @@ module.exports = async function auth(req, res, next) {
   if (!data) return res.sendStatus(403);
 
   //got the data
-  req.id = data;
+  req.id = data.id;
   next();
 };
