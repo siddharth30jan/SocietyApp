@@ -1,5 +1,5 @@
 const route = require("express").Router();
-const { Societies } = require("../models");
+const { Societies, Students } = require("../models");
 const bcrypt = require("bcryptjs");
 const auth = require("./auth");
 const jwt = require("jsonwebtoken");
@@ -48,16 +48,6 @@ route.post("/signup", async (req, res) => {
   }
 });
 
-//Get a specific society
-route.get("/:name", auth, async (req, res) => {
-  try {
-    let society = await Societies.findOne({ name: req.params.name });
-    res.status(200).json({ msg: "success", data: society });
-  } catch (error) {
-    res.status(400).json({ msg: "error", err: error });
-  }
-});
-
 //Update - Add notifications to societies
 route.put("/add", auth, async (req, res) => {
   const { data } = req.body;
@@ -74,7 +64,36 @@ route.put("/add", auth, async (req, res) => {
     );
     res.json({ msg: "success", updatedSociety });
   } catch (error) {
-    res.json(error);
+    res.status(400).json({ msg: "error", err: error });
+  }
+});
+
+// Subscribe to a society
+route.put("/subscribe/:society", auth, async (req, res) => {
+  try {
+    const student = await Students.findById(req.id);
+    console.log({ msg: "hello", student });
+
+    if (student) {
+      let query = { societies: [...student.societies, req.params.society] };
+      const newStudent = await Students.findByIdAndUpdate(req.id, query, {
+        new: true
+      });
+      res.json({ msg: "success", newStudent });
+    }
+  } catch (error) {
+    res.status(400).json({ msg: "error", err: error });
+  }
+});
+
+//Get a specific society
+
+route.get("/:name", auth, async (req, res) => {
+  try {
+    let society = await Societies.findOne({ name: req.params.name });
+    res.status(200).json({ msg: "success", data: society });
+  } catch (error) {
+    res.status(400).json({ msg: "error", err: error });
   }
 });
 

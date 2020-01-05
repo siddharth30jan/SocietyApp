@@ -13,4 +13,13 @@ route.get("/", auth, async (req, res) => {
 });
 //Subscribing route- get all subscribed societies
 
+route.get("/sub", auth, async (req, res) => {
+  try {
+    const student = await Students.findById(req.id);
+    res.json({ msg: "success", data: student.societies });
+  } catch (error) {
+    res.status(400).json({ msg: "error", err: error });
+  }
+});
+
 module.exports = route;

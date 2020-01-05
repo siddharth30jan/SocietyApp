@@ -20,3 +20,5 @@ route.post("/", async (req, res) => {
 });
 
 module.exports = route;
+
+//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMGZiNTVlNDYyNDgwNzdmODU4NDRhOSIsImlhdCI6MTU3ODIwMTA4Mn0.7iYUcpQXpePDt5IDDv_RS_Ht-QMg8tP7YKLOwCV6NRE
