@@ -1,29 +1,37 @@
 import React, { useState } from "react";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import { Link } from "react-router-dom";
-import Button from "@material-ui/core/Button";
 
 const style = {
   display: "flex",
   flexDirection: "column",
   //margin: "100px",
-  padding: "20px"
+  padding: "50px"
 };
-const Login = () => {
+const SocSignup = () => {
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
   const Submit = e => {
     e.preventDefault();
-    console.log(password, email);
+    console.log(name, password, email);
   };
   return (
     <div style={style}>
-      <h2>SIGNIN</h2>
+      <h2>SIGNUP</h2>
       <div style={{ margin: "auto" }}>
         <LockOutlinedIcon />
       </div>
       <form style={style} onSubmit={Submit}>
+        <input
+          name="name"
+          type="text"
+          placeholder="name"
+          style={{ marginTop: "5px" }}
+          onChange={e => {
+            setName(e.target.value);
+          }}
+        />
         <input
           name="email"
           type="email"
@@ -42,16 +50,10 @@ const Login = () => {
             setPassword(e.target.value);
           }}
         />
-        <button style={{ marginTop: "5px" }}>Login</button>
+        <button style={{ marginTop: "5px" }}>Register</button>
       </form>
-      <div style={{ style }}>
-        <h2>Dont have an account? Register here</h2>
-        <Link to="/signup" style={{ textDecoration: "none" }}>
-          <Button color="inherit">Signup</Button>
-        </Link>
-      </div>
     </div>
   );
 };
 
-export default Login;
+export default SocSignup;
