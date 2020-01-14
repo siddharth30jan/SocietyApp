@@ -46,7 +46,7 @@ const UserLogin = () => {
       </form>
       <div style={{ style }}>
         <h2>Dont have an account? Register here</h2>
-        <Link to="/signup" style={{ textDecoration: "none" }}>
+        <Link to="/usersignup" style={{ textDecoration: "none" }}>
           <Button color="inherit">Signup</Button>
         </Link>
       </div>

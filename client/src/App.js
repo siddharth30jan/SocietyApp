@@ -7,7 +7,8 @@ import {
   UserLogin,
   UserSignup,
   SocLogin,
-  SocSignup
+  SocSignup,
+  SocAddData
 } from "./components/index";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/usersignup" exact component={UserSignup} />
           <Route path="/soclogin" exact component={SocLogin} />
           <Route path="/socsignup" exact component={SocSignup} />
+          <Route path="/socadddata" exact component={SocAddData} />
         </Switch>
       </div>
     </Router>

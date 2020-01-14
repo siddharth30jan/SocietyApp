@@ -30,7 +30,7 @@ export default function Nav() {
           <Typography variant="h6" className={classes.title}>
             TU Notifications
           </Typography>
-          <Link to="/login" style={{ textDecoration: "none" }}>
+          <Link to="/userlogin" style={{ textDecoration: "none" }}>
             <Button color="inherit">Login</Button>
           </Link>
         </Toolbar>
