@@ -12,7 +12,7 @@ const SocSignup = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const Submit = e => {
@@ -35,7 +35,7 @@ const SocSignup = () => {
       .catch(e => console.log(e));
   };
 
-  if (isLoggedIn) {
+  if (isLoggedIn || token) {
     return <Redirect to="/soclogin" />;
   } else {
     return (

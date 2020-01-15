@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import { Redirect } from "react-router-dom";
 
 const style = {
   display: "flex",
@@ -11,11 +12,29 @@ const UserSignup = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const Submit = e => {
     e.preventDefault();
     console.log(name, password, email);
+    fetch("http://localhost:5000/api/signup", {
+      method: "POST",
+      body: JSON.stringify({ email, password, name }),
+      headers: new Headers({
+        "Content-Type": "application/json"
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.msg == "success") {
+          setIsLoggedIn(true);
+        }
+      })
+      .catch(e => console.log(e));
   };
+  if (isLoggedIn || token) return <Redirect to="/userlogin" />;
   return (
     <div style={style}>
       <h2>SIGNUP</h2>
