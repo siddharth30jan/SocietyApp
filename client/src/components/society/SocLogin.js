@@ -13,7 +13,7 @@ const style = {
 const SocLogin = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("token"));
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   const Submit = e => {
     e.preventDefault();
@@ -30,15 +30,15 @@ const SocLogin = () => {
         console.log(data);
         if (data.msg == "success") {
           localStorage.setItem("token", data.token);
-          setIsLoggedIn(data.token);
+          setToken(data.token);
         }
       })
       .catch(e => {
         console.log(e);
       });
   };
-  console.log(isLoggedIn);
-  if (isLoggedIn) return <Redirect to="/socadddata" />;
+
+  if (token) return <Redirect to="/socadddata" />;
   else {
     return (
       <div style={style}>
