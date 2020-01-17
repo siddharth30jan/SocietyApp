@@ -16,6 +16,7 @@ route.get("/", auth, async (req, res) => {
 route.get("/sub", auth, async (req, res) => {
   try {
     const student = await Students.findById(req.id);
+    //console.log(student);
     res.json({ msg: "success", data: student.societies });
   } catch (error) {
     res.status(400).json({ msg: "error", err: error });
