@@ -1,7 +1,7 @@
 import React from "react";
 
 const Template = ({ name, notifs }) => {
-  alert("dfdgh");
+  if (!name || !notifs) return <div></div>;
   return (
     <div style={{ background: "blue" }}>
       <div style={{ margin: "10px", padding: "10px" }}>
@@ -9,7 +9,7 @@ const Template = ({ name, notifs }) => {
       </div>
       <div style={{ margin: "10px", padding: "10px" }}>
         {notifs.map(x => {
-          return <h4 style={{ margin: "4px" }}>x</h4>;
+          return <h4 style={{ margin: "4px" }}>{x}</h4>;
         })}
       </div>
     </div>
